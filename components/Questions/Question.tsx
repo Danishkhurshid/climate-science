@@ -1,9 +1,19 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from './Question.module.scss';
 
 const Question = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<String>();
+  const [toggleClass, setToggleClass] = useState<boolean>(false);
+
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setToggleClass(!toggleClass);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [toggleClass]);
+
 
    // This function will be triggered when a radio button is selected
   const radioHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -11,47 +21,40 @@ const Question = () => {
   };
 
   return (
-      <div className={styles.formContainer}>
+      <div className={`${styles.formContainer } ${toggleClass && styles.flash}`}>
       <fieldset>
         <legend className={styles.formHeading}>Which of the below statements about electricity is not true?</legend>
-        <p className={styles.formItem}>
-          <input
-            type="radio"
-            name="question"
-            value="one"
-            id="one"
-            onChange={radioHandler}
-            className={styles.formRadioButton}
-          />
-          <span className={styles.radioLook}></span>
-          <label htmlFor="one">Electricity is measured in units called watts</label>
-        </p>
+        <div className={styles.wrapper}>
+          <div className={styles.radio}>
+            <input
+              type="radio"
+              name="question"
+              value="one"
+              id="one"
+            />
+            <label className={styles.radioLabel} htmlFor="one">Electricity is measured in units called watts</label>
+          </div>
 
-        <p className={styles.formItem}>
-          <input
-            type="radio"
-            name="question"
-            value="two"
-            id="two"
-            onChange={radioHandler}
-            className={styles.formRadioButton}
-          />
-           <span className={styles.radioLook}></span>
-          <label htmlFor="two">Electricity flows at the speed of light</label>
-        </p>
+          <div className={styles.radio}>
+            <input
+              type="radio"
+              name="question"
+              value="two"
+              id="two"
+            />
+            <label className={styles.radioLabel} htmlFor="two">Electricity flows at the speed of light</label>
+          </div>
 
-        <p className={styles.formItem}>
-          <input
-            type="radio"
-            name="question"
-            value="three"
-            id="three"
-            onChange={radioHandler}
-            className={styles.formRadioButton}
-          />
-          <span className={styles.radioLook}></span>
-          <label htmlFor="three">Electricity is a primary energy source</label>
-        </p>
+          <div className={styles.radio}>
+            <input
+              type="radio"
+              name="question"
+              value="three"
+              id="three"
+            />
+            <label className={styles.radioLabel} htmlFor="three">Electricity is a primary energy source</label>
+          </div>
+          </div>
       </fieldset>
       </div>
   )

@@ -1,10 +1,14 @@
 $primary-color: #6231EC;
 $secondary-color: #818181;
 $background-color: #FFFFFF;
+$shadow-color: #cecece;
+$disabled-color: #b4b4b4;
 
 
 :export {
   primaryColor: $primary-color;
   secondaryColor: $secondary-color;
   background-color: $background-color;
+  shadow-color: $shadow-color;
+  disabled-color: $disabled-color;
 }
