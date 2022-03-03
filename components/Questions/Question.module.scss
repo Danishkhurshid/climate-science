@@ -28,7 +28,7 @@
 
 .wrapper {
 	margin-top: 300px;
-	transition: all 250ms ease;
+	transition: all 350ms ease;
 }
 
 .flash fieldset {
@@ -37,11 +37,11 @@
 
 .formContainer.flash .wrapper {
 	margin-top: 0;
-	transition: all 450ms ease;
+	transition: all 1s ease;
 }
 
 .flash legend {
-	animation: fadeIn 3s;
+	animation: fadeIn 1s;
 }
 
 @keyframes fadeIn {
