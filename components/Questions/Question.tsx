@@ -21,6 +21,7 @@ const Question = () => {
     setSelectedAnswer(event.target.value);
   };
 
+  // radio input values can be a json object that can be mapped over. So that we don't need to repeat! 
   return (
       <div className={`${styles.formContainer } ${toggleClass && styles.flash}`}>
       <fieldset>
