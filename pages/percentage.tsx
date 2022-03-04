@@ -1,12 +1,14 @@
-import type { NextPage } from 'next';
+import { NextPage } from 'next';
 import styles from '../styles/Home.module.scss';
 import {scoreData} from '../data/scoreData.json';
-import {calcPercentile} from '../utils';
-import { useCollection } from "react-firebase-hooks/firestore";
-import firebase from "../firebase/clientApp";
-
+import {calcPercentile} from '../utils/percentile';
 
 const Percetange: NextPage  = () => {
+
+  interface percentilesValues {
+    percentile: string| number;
+    value: number;
+  }
 
   // Percentile code starts.
   let scores: Array<number> = [];
@@ -17,7 +19,7 @@ const Percetange: NextPage  = () => {
   let percentiles: Array<number> = [10, 50, 90];
 
   // Calculated Percentile Values
-  let calculatedPercentileValues: Array<number> = [];
+  let calculatedPercentileValues: Array<percentilesValues> = [];
 
   percentiles.map((percentile) => {
     let percent = calcPercentile(scores, percentile);
@@ -26,20 +28,6 @@ const Percetange: NextPage  = () => {
 
  // Percentile code ends.
 
-
-
-  // Firebase code starts
-  // Currently failing to connect to firebase.
-  const [teamScore, teamScoreLoading, teamScoreError] = useCollection(
-    firebase.firestore().collection("teamScore"),
-    {}
-  );
-
-
-  if(!teamScoreLoading && teamScore) {
-    teamScore.docs.map((doc) => console.log(doc.data()));
-  }
-  // Firebase ends.
 
   return (
       <div className={styles.container}>

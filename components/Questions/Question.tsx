@@ -15,7 +15,8 @@ const Question = () => {
   }, [toggleClass]);
 
 
-   // This function will be triggered when a radio button is selected
+   // This function will be triggered when a radio button is selected. 
+   // Use the state vlaue selectedAnswer to display the value if required.
   const radioHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedAnswer(event.target.value);
   };
